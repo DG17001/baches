@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import occ.ues.edu.sv.baches.entity.Ruta;
 
 /**
@@ -35,8 +36,8 @@ public class RutaBean extends AbstractDataAccess<Ruta> implements Serializable{
     }
 
     @Override
-    public void eliminar(Object id) throws IllegalArgumentException, IllegalStateException {
-        super.eliminar(id); //To change body of generated methods, choose Tools | Templates.
+    public void eliminar(Ruta registro) throws IllegalArgumentException, IllegalStateException {
+        super.eliminar(registro); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -55,8 +56,13 @@ public class RutaBean extends AbstractDataAccess<Ruta> implements Serializable{
     }
 
     @Override
-    public List<Ruta> findRange(int first, int pageSize) throws IllegalStateException {
+    public List<Ruta> findRange(int first, int pageSize) throws IllegalArgumentException,IllegalStateException {
         return super.findRange(first, pageSize); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public TypedQuery GenerarConsultaBase(EntityManager em) {
+        return super.GenerarConsultaBase(em); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

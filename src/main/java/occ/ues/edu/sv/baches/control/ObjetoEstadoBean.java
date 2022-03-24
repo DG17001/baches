@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import occ.ues.edu.sv.baches.entity.ObjetoEstado;
 
 /**
@@ -35,8 +36,8 @@ public class ObjetoEstadoBean extends AbstractDataAccess<ObjetoEstado>implements
     }
 
     @Override
-    public void eliminar(Object id) throws IllegalArgumentException, IllegalStateException {
-        super.eliminar(id); //To change body of generated methods, choose Tools | Templates.
+    public void eliminar(ObjetoEstado registro) throws IllegalArgumentException, IllegalStateException {
+        super.eliminar(registro); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -55,8 +56,13 @@ public class ObjetoEstadoBean extends AbstractDataAccess<ObjetoEstado>implements
     }
 
     @Override
-    public List<ObjetoEstado> findRange(int first, int pageSize) throws IllegalStateException {
+    public List<ObjetoEstado> findRange(int first, int pageSize) throws IllegalArgumentException,IllegalStateException {
         return super.findRange(first, pageSize); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public TypedQuery GenerarConsultaBase(EntityManager em) {
+        return super.GenerarConsultaBase(em); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

@@ -9,13 +9,14 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import occ.ues.edu.sv.baches.entity.Estado;
 
 /**
  *
  * @author magdiel
  */
-public class EstadoBean extends AbstractDataAccess<Estado>implements Serializable{
+public class EstadoBean extends AbstractDataAccess<Estado> implements Serializable{
 
     @PersistenceContext (name = "bachesUP")
     EntityManager em;
@@ -36,8 +37,8 @@ public class EstadoBean extends AbstractDataAccess<Estado>implements Serializabl
     }
 
     @Override
-    public void eliminar(Object id) throws IllegalArgumentException, IllegalStateException {
-        super.eliminar(id); //To change body of generated methods, choose Tools | Templates.
+    public void eliminar(Estado registro) throws IllegalArgumentException, IllegalStateException {
+        super.eliminar(registro); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -56,10 +57,15 @@ public class EstadoBean extends AbstractDataAccess<Estado>implements Serializabl
     }
 
     @Override
-    public List<Estado> findRange(int first, int pageSize) throws IllegalStateException {
+    public List<Estado> findRange(int first, int pageSize) throws IllegalArgumentException,IllegalStateException {
         return super.findRange(first, pageSize); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public TypedQuery GenerarConsultaBase(EntityManager em) {
+        return super.GenerarConsultaBase(em); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public Long contar() throws IllegalStateException {
         return super.contar(); //To change body of generated methods, choose Tools | Templates.
