@@ -20,7 +20,7 @@ public class BeanDePruebaIT {
       @Deployment
     public static WebArchive crearDespliegue() {
         WebArchive salida = ShrinkWrap.create(WebArchive.class)
-                .addPackage("sv.edu.ues.occ.ingenieria.tpi135.bachestpi.resources.entity")
+                .addPackage("occ.ues.edu.sv.baches.entity")
                 .addAsResource("persistence-arquillian.xml")
                 .addClass(AbstractDataAccess.class)
                 .addClass(EstadoBean.class)
