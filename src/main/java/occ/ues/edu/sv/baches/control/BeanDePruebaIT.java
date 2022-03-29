@@ -34,7 +34,7 @@ public class BeanDePruebaIT {
     @Inject
     EstadoBean cut;
 
-    @Test
+    @Test 
     @Order(1)
     public void testCrear() {
         System.out.println("Crear");
