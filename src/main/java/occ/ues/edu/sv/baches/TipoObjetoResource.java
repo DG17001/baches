@@ -21,7 +21,7 @@ import occ.ues.edu.sv.baches.entity.TipoObjeto;
  */
 
 @Path("tipoobjeto")
-public class TipoObjetoResources implements Serializable{
+public class TipoObjetoResource implements Serializable{
     
     @Inject
     TipoObjetoBean toBean;
@@ -31,7 +31,9 @@ public class TipoObjetoResources implements Serializable{
     public Response findAll(){
         List<TipoObjeto> registros=toBean.findAll();
         Long total=toBean.contar();
-        return Response.ok(registros).header("Total registros", total).build();
+        return Response.ok(registros)
+                .header("Total registros", total)
+                .build();
     }
     
     

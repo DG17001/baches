@@ -8,4 +8,14 @@
             30
         </session-timeout>
     </session-config>
+     <ejb-local-ref>
+        <ejb-ref-name>estadoBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <ejb-link>#EstadoBean</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>estadoBean1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <ejb-link>#EstadoBean</ejb-link>
+    </ejb-local-ref>
 </web-app>
