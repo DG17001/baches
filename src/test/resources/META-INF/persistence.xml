@@ -3,11 +3,11 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name="baches-PU" transaction-type="JTA">
     <jta-data-source>jdbc/tpi</jta-data-source>
-    <class>com.mycompany.crudbaches.entity.TipoObjeto</class>
-    <class>com.mycompany.crudbaches.entity.ObjetoEstado</class>
-    <class>com.mycompany.crudbaches.entity.Estado</class>
-    <class>com.mycompany.crudbaches.entity.Ruta</class>
-    <class>com.mycompany.crudbaches.entity.Objeto</class>
+    <class>occ.ues.edu.sv.baches.entity.Estado</class>
+    <class>occ.ues.edu.sv.baches.entity.Objeto</class>
+    <class>occ.ues.edu.sv.baches.entity.ObjetoEstado</class>
+    <class>occ.ues.edu.sv.baches.entity.Ruta</class>
+    <class>occ.ues.edu.sv.baches.entity.TipoObjeto</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/datos.sql"/>

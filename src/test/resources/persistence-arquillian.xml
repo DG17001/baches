@@ -4,15 +4,15 @@
 
 <!-- https://docs.payara.fish/community/docs/documentation/payara-server/app-deployment/deployment-descriptors.html -->
 <resources>
-    <jdbc-resource jndi-name="jdbc/tpi" pool-name="tpi">
+    <jdbc-resource jndi-name="jdbc/baches" pool-name="baches">
         <description/>
     </jdbc-resource>
     <jdbc-connection-pool
        datasource-classname="org.h2.jdbcx.JdbcDataSource"
-       name="tpi"
+       name="baches"
        res-type="javax.sql.DataSource">
-       <property name="user" value="postgres"/>
-       <property name="password" value="root"/>
+       <property name="user" value="sa"/>
+       <property name="password" value=""/>
         
        <property name="url"
                  value="jdbc:h2:mem:h2;TRACE_LEVEL_FILE=3;TRACE_LEVEL_SYSTEM_OUT=3;DB_CLOSE_DELAY=1" />
