@@ -23,7 +23,7 @@
         <arquillian-payara.version>2.4.6</arquillian-payara.version>
     </properties>
     
-    <dependencyManagement>
+        <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
@@ -73,8 +73,8 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
-            <scope>test</scope>
+             <artifactId>arquillian-junit5-container</artifactId>
+             <scope>test</scope>
         </dependency>
     </dependencies>
     
@@ -102,7 +102,6 @@
     </profiles>
     
     <build>
-        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -176,6 +175,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -198,14 +198,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>  
-                <groupId>org.apache.maven.plugins</groupId>  
-                <artifactId>maven-surefire-plugin</artifactId>  
-                <version>2.22.2</version>  
-                <configuration>  
-                    <skipTests>true</skipTests>  
-                </configuration>  
-            </plugin>  
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>

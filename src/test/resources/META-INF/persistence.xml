@@ -2,7 +2,7 @@
 <persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <!-- Define Persistence Unit -->
   <persistence-unit name="baches-PU" transaction-type="JTA">
-    <jta-data-source>jdbc/tpi</jta-data-source>
+    <jta-data-source>jdbc/baches</jta-data-source>
     <class>occ.ues.edu.sv.baches.entity.Estado</class>
     <class>occ.ues.edu.sv.baches.entity.Objeto</class>
     <class>occ.ues.edu.sv.baches.entity.ObjetoEstado</class>
