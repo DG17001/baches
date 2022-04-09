@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package occ.ues.edu.sv.baches;
+package occ.ues.edu.sv.baches.resources;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
@@ -26,7 +28,7 @@ import occ.ues.edu.sv.baches.entity.TipoObjeto;
 
 @Path("tipoobjeto")
 @RequestScoped
-public class TipoObjetoResource{
+public class TipoObjetoResource implements Serializable{
     
     @Inject
     TipoObjetoBean toBean;
@@ -37,12 +39,18 @@ public class TipoObjetoResource{
         List<TipoObjeto> registros=toBean.findAll();
         Long total=toBean.contar();
         return Response.ok(registros)
-                .header("Total registros", total)
+                .header("Total-registros", total)
                 .build();
     }
     
+    @GET
+    @Path("contar")
+    public CompletableFuture<Long> contar(){
+        return CompletableFuture.supplyAsync(toBean::contar);
+    }
+    
     @POST
-    public Response crea(TipoObjeto nuevo) {
+    public Response crear(TipoObjeto nuevo) {
         nuevo.setActivo(Boolean.TRUE);
         toBean.crear(nuevo);
         return Response.ok(nuevo)

@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -43,5 +43,21 @@ public class TipoObjetoBean extends AbstractDataAccess<TipoObjeto> implements Se
     public void closeEMF() {
         em.getEntityManagerFactory().close();
     }
+
+    @Override
+    public Long contar() throws IllegalStateException {
+        try{
+            Thread.sleep(2000);
+        }catch(Exception ex){
+            
+        }
+                
+        return super.contar(); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
+    @Override
+    public List<TipoObjeto> findAll() throws IllegalStateException {
+        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }  
 }

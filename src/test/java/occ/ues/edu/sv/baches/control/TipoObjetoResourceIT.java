@@ -16,7 +16,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 import occ.ues.edu.sv.baches.JAXRSConfiguration;
-import occ.ues.edu.sv.baches.TipoObjetoResource;
+import occ.ues.edu.sv.baches.resources.TipoObjetoResource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit5.ArquillianExtension;
