@@ -16,8 +16,8 @@
         <jakartaee>8.0.0</jakartaee>
         <mockito-core-version>3.1.0</mockito-core-version>
         <jacoco.version>0.8.5</jacoco.version>
-        <maven-surefire-plugin.version>3.0.0-M2</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M2</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
         <arquillian-bom.version>1.7.0.Alpha10</arquillian-bom.version>
         <payara.version>5.2021.1</payara.version>
         <arquillian-payara.version>2.4.6</arquillian-payara.version>

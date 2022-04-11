@@ -54,8 +54,8 @@ public class TipoObjetoBean extends AbstractDataAccess<TipoObjeto> implements Se
     }
 
     
-//    @Override
-//    public List<TipoObjeto> findAll() throws IllegalStateException {
-//        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
-//    }  
+    @Override
+    public List<TipoObjeto> findAll() throws IllegalStateException {
+        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }  
 }

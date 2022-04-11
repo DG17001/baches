@@ -5,6 +5,7 @@
  */
 package occ.ues.edu.sv.baches.resources;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -18,24 +19,26 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import occ.ues.edu.sv.baches.control.EstadoBean;
-import occ.ues.edu.sv.baches.entity.Estado;
+import occ.ues.edu.sv.baches.control.ObjetoBean;
+import occ.ues.edu.sv.baches.entity.Objeto;
 
 
 /**
  *
  * @author magdiel
  */
-@Path("estado")
+
+@Path("objeto")
 @RequestScoped
-public class EstadoResource{
+public class ObjetoResource {
+    
     @Inject
-    EstadoBean toBean;
+    ObjetoBean toBean;
     
     @GET
     @Produces({"application/json; charset=UTF-8"})
     public Response findAll(){
-        List<Estado> registros=toBean.findAll();
+        List<Objeto> registros=toBean.findAll();
         Long total=toBean.contar();
         return Response.ok(registros)
                 .header("Total-registros", total)
@@ -49,9 +52,10 @@ public class EstadoResource{
     }
     
     @POST
-    public Response crear(Estado nuevo) {
+    public Response crear(Objeto nuevo) {
         nuevo.setNombre("Insertado desde EstadoResource");
-        nuevo.setFechaCreacion(new Date());
+        nuevo.setLatitud(BigDecimal.ONE);
+        nuevo.setLongitud(BigDecimal.ONE);
         toBean.crear(nuevo);
         return Response.ok(nuevo)
                 .header("Nuevo Registro Creado", nuevo)
@@ -59,9 +63,10 @@ public class EstadoResource{
     }
 
     @PUT
-    public Response modificar(Estado edit) {
+    public Response modificar(Objeto edit) {
         edit.setNombre("Modificado desde EstadoResource");
-        edit.setFechaCreacion(new Date());
+        edit.setLatitud(BigDecimal.ONE);
+        edit.setLongitud(BigDecimal.ONE);
         toBean.modificar(edit);
         return Response.ok(edit)
                 .header("Registro modificado", edit)
@@ -71,11 +76,12 @@ public class EstadoResource{
     
     @DELETE
     @Path("{userId}")
-    public Response eliminar(Estado eliminar,@PathParam("userId") int id){
-        eliminar.setIdEstado(id);
+    public Response eliminar(Objeto eliminar,@PathParam("userId") Long id){
+        eliminar.setIdObjeto(id);
         toBean.eliminar(eliminar);
         return Response.ok(eliminar)
                 .header("Eliminado el registro con id : ", id)
                 .build();
     }
+    
 }
