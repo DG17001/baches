@@ -1,10 +1,11 @@
-/*  
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package occ.ues.edu.sv.baches.resources;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -18,25 +19,24 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import occ.ues.edu.sv.baches.control.TipoObjetoBean;
-import occ.ues.edu.sv.baches.entity.TipoObjeto;
+import occ.ues.edu.sv.baches.control.EstadoBean;
+import occ.ues.edu.sv.baches.entity.Estado;
+
 
 /**
  *
  * @author magdiel
  */
-
-@Path("tipoobjeto")
+@Path("estado")
 @RequestScoped
-public class TipoObjetoResource{
-    
+public class EstadoResource implements Serializable{
     @Inject
-    TipoObjetoBean toBean;
+    EstadoBean toBean;
     
     @GET
     @Produces({"application/json; charset=UTF-8"})
     public Response findAll(){
-        List<TipoObjeto> registros=toBean.findAll();
+        List<Estado> registros=toBean.findAll();
         Long total=toBean.contar();
         return Response.ok(registros)
                 .header("Total-registros", total)
@@ -50,8 +50,8 @@ public class TipoObjetoResource{
     }
     
     @POST
-    public Response crear(TipoObjeto nuevo) {
-        nuevo.setActivo(Boolean.TRUE);
+    public Response crear(Estado nuevo) {
+        nuevo.setNombre("Insertado desde EstadoResource");
         nuevo.setFechaCreacion(new Date());
         toBean.crear(nuevo);
         return Response.ok(nuevo)
@@ -60,10 +60,9 @@ public class TipoObjetoResource{
     }
 
     @PUT
-    public Response modificar(TipoObjeto edit) {
-        
-        edit.setActivo(Boolean.FALSE);
-        
+    public Response modificar(Estado edit) {
+        edit.setNombre("Modificado desde EstadoResource");
+        edit.setFechaCreacion(new Date());
         toBean.modificar(edit);
         return Response.ok(edit)
                 .header("Registro modificado", edit)
@@ -73,13 +72,11 @@ public class TipoObjetoResource{
     
     @DELETE
     @Path("{userId}")
-    public Response eliminar(TipoObjeto eliminar,@PathParam("userId") int id){
-        eliminar.setIdTipoObjeto(id);
+    public Response eliminar(Estado eliminar,@PathParam("userId") int id){
+        eliminar.setIdEstado(id);
         toBean.eliminar(eliminar);
         return Response.ok(eliminar)
                 .header("Eliminado el registro con id : ", id)
                 .build();
     }
-
-    
 }

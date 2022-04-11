@@ -23,8 +23,6 @@ import occ.ues.edu.sv.baches.entity.TipoObjeto;
  */
 @Stateless
 @LocalBean
-@Singleton
-@Startup
 public class TipoObjetoBean extends AbstractDataAccess<TipoObjeto> implements Serializable{
     
     @PersistenceContext (unitName = "bachesUP")
@@ -56,8 +54,8 @@ public class TipoObjetoBean extends AbstractDataAccess<TipoObjeto> implements Se
     }
 
     
-    @Override
-    public List<TipoObjeto> findAll() throws IllegalStateException {
-        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
-    }  
+//    @Override
+//    public List<TipoObjeto> findAll() throws IllegalStateException {
+//        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
+//    }  
 }
