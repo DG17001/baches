@@ -7,6 +7,8 @@ package occ.ues.edu.sv.baches.resources;
 
 import java.io.StringReader;
 import java.net.URL;
+import java.util.Date;
+import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -32,6 +34,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -61,6 +64,9 @@ public class TipoObjetoResourceIT {
         return salida;
     }
     
+    @Inject
+    TipoObjetoBean cut;
+    
     @ArquillianResource
     URL url;
            
@@ -71,7 +77,7 @@ public class TipoObjetoResourceIT {
         System.out.println("Crear TipoObjeto");
         TipoObjeto nuevo = new TipoObjeto();
         nuevo.setActivo(Boolean.TRUE);
-
+        nuevo.setFechaCreacion(new Date());
         int resultadoEsperado = 200;
         Client cliente = ClientBuilder.newClient();
         WebTarget target = cliente.target(url.toString() + "resources/");
@@ -97,7 +103,7 @@ public class TipoObjetoResourceIT {
         TipoObjeto nuevo = new TipoObjeto();
         nuevo.setIdTipoObjeto(3);
         nuevo.setActivo(Boolean.FALSE);
-
+        nuevo.setFechaCreacion(new Date());
         int resultadoEsperado = 200;
         Client cliente = ClientBuilder.newClient();
         WebTarget target = cliente.target(url.toString() + "resources/");
@@ -168,6 +174,17 @@ public class TipoObjetoResourceIT {
 //        }
 //        System.out.println("\n\n");
 //        System.out.println("\n\n");
+    }
+    
+    @Test
+    @Order(5)
+    public void testContar() {
+        System.out.println("Contar");
+        assertNotNull(cut);
+        Long resultado = cut.contar();
+        assertNotNull(resultado);
+        System.out.println("Se encontraron " + resultado);
+
     }
 }
 

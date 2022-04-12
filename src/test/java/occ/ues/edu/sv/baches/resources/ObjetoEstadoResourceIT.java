@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import javax.inject.Inject;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.ws.rs.client.Client;
@@ -23,11 +22,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import occ.ues.edu.sv.baches.JAXRSConfiguration;
 import occ.ues.edu.sv.baches.control.AbstractDataAccess;
-import occ.ues.edu.sv.baches.control.EstadoBean;
-import occ.ues.edu.sv.baches.entity.Estado;
+import occ.ues.edu.sv.baches.control.ObjetoEstadoBean;
+import occ.ues.edu.sv.baches.entity.ObjetoEstado;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -36,34 +34,31 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 /**
  *
  * @author magdiel
  */
-
-@ExtendWith(ArquillianExtension.class)
-public class EstadoResourceIT {
+public class ObjetoEstadoResourceIT {
     
-@Deployment
+    @Deployment
     public static WebArchive crearDespliegue() {
         WebArchive salida = ShrinkWrap.create(WebArchive.class)
                 .addPackage("occ.ues.edu.sv.baches.entity")
                 .addAsResource("persistence-arquillian.xml")
                 .addClass(AbstractDataAccess.class)
-                .addClass(EstadoBean.class)
+                .addClass(ObjetoEstadoBean.class)
                 .addClass(JAXRSConfiguration.class)
-                .addClass(EstadoResource.class)
+                .addClass(TipoObjetoResource.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("META-INF/sql/datos.sql", "META-INF/sql/datos.sql")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "pom.xml");
         System.out.println(salida.toString(true));
         return salida;
-    }    
-       
+    }
+    
     @Inject
-    EstadoBean cut;
+    ObjetoEstadoBean cut;
     
     @ArquillianResource
     URL url;
@@ -72,14 +67,14 @@ public class EstadoResourceIT {
     @RunAsClient
     @Order(1)
     public void testCrear() {
-        System.out.println("Crear Estado");
-        Estado nuevo = new Estado();
-        nuevo.setNombre("Insertado desde EstadoResourceIT");
-        nuevo.setFechaCreacion(new Date());
+        System.out.println("Crear TipoObjeto");
+        ObjetoEstado nuevo = new ObjetoEstado();
+        nuevo.setActual(true);
+        nuevo.setFechaAlcanzado(new Date());
         int resultadoEsperado = 200;
         Client cliente = ClientBuilder.newClient();
         WebTarget target = cliente.target(url.toString() + "resources/");
-        Response respuesta = target.path("estado").request("accept","application/json").post(Entity.entity(nuevo, MediaType.APPLICATION_JSON));
+        Response respuesta = target.path("objetoestado").request("accept","application/json").post(Entity.entity(nuevo, MediaType.APPLICATION_JSON));
         assertEquals(resultadoEsperado, respuesta.getStatus());
         String registro = respuesta.getHeaderString("Registro-Creado");
         assertNotEquals(null, registro);
@@ -97,14 +92,14 @@ public class EstadoResourceIT {
     @RunAsClient
     @Order(2)
     public void testModificar() {
-        System.out.println("Modificar Estado");
-        Estado edit = new Estado();
-        edit.setNombre("Insertado desde EstadoResourceIT");
-        edit.setFechaCreacion(new Date());
+        System.out.println("Modificar Objeto");
+        ObjetoEstado edit = new ObjetoEstado();
+        edit.setActual(false);
+        edit.setFechaAlcanzado(new Date());
         int resultadoEsperado = 200;
         Client cliente = ClientBuilder.newClient();
         WebTarget target = cliente.target(url.toString() + "resources/");
-        Response respuesta = target.path("estado").request("accept","application/json").put(Entity.entity(edit, MediaType.APPLICATION_JSON));
+        Response respuesta = target.path("objetoestado").request("accept","application/json").put(Entity.entity(edit, MediaType.APPLICATION_JSON));
         assertEquals(resultadoEsperado, respuesta.getStatus());
         String registro = respuesta.getHeaderString("Modificado");
         assertNotEquals(null, registro);
@@ -123,13 +118,12 @@ public class EstadoResourceIT {
     @RunAsClient
     @Order(3)
     public void testEliminar() {
-        System.out.println("Eliminar TipoObjeto");
-        Estado delete = new Estado();
-
+        System.out.println("Eliminar ObjetoEstado");
+        ObjetoEstado delete = new ObjetoEstado();        
         int resultadoEsperado = 200;
         Client cliente = ClientBuilder.newClient();
         WebTarget target = cliente.target(url.toString() + "resources/");
-        Response respuesta = target.path("estado/3").request("accept","application/json").delete();
+        Response respuesta = target.path("objetoestado/3").request("accept","application/json").delete();
         assertEquals(resultadoEsperado, respuesta.getStatus());
         String registro = respuesta.getHeaderString("ID-eliminado");
         assertNotEquals(null, registro);
@@ -139,7 +133,7 @@ public class EstadoResourceIT {
 
         System.out.println("\n\n");
         System.out.println("\n\n");
-        System.out.println("ID:" + objeto.getInt("idEstado") + " eliminado con exito");
+        System.out.println("ID:" + objeto.getInt("idObjeto") + " eliminado con exito");
         System.out.println("\n\n");
         System.out.println("\n\n");
     }
@@ -150,11 +144,11 @@ public class EstadoResourceIT {
     public void testFindAll(){
         System.out.println("\n");
         System.out.println("--------------------------------------------------------------");
-        System.out.println("findAllEstado");
+        System.out.println("findAllObjetoEstado");
         int resultadoEsperado=200;
         Client cliente=ClientBuilder.newClient();
         WebTarget target= cliente.target(url.toString()+"resources/");
-        Response respuesta = target.path("estado").request("accept","application/json").get(); 
+        Response respuesta = target.path("objetoestado").request("accept","application/json").get(); 
         Assertions.assertEquals(resultadoEsperado, respuesta.getStatus());
         String totalTexto = respuesta.getHeaderString("Total-Registros");
         Assertions.assertNotEquals(Integer.valueOf(0), Integer.valueOf(totalTexto));
@@ -183,4 +177,5 @@ public class EstadoResourceIT {
         System.out.println("Se encontraron " + resultado);
 
     }
+    
 }

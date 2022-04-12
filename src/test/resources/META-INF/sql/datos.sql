@@ -1,3 +1,15 @@
-INSERT INTO tipo_objeto (activo, fecha_creacion) VALUES(true,'2022-03-29');
-INSERT INTO tipo_objeto (activo, fecha_creacion) VALUES(true,'2022-03-30');
-INSERT INTO tipo_objeto (activo, fecha_creacion) VALUES(true,'2022-03-31');
+INSERT INTO estado (nombre, fecha_creacion) VALUES('Insertado desde datos.sql','2022-04-11');
+INSERT INTO estado (nombre, fecha_creacion) VALUES('Insertado desde datos.sql','2022-04-11');
+INSERT INTO estado (nombre, fecha_creacion) VALUES('Insertado desde datos.sql','2022-04-11');
+INSERT INTO objeto (longitud, latitud,nombre) VALUES('6.1234567890','2.1789298172','Insertado desde datos.sql');
+INSERT INTO objeto (longitud, latitud,nombre) VALUES('4.6152112981','4.6152112981','Insertado desde datos.sql');
+INSERT INTO objeto (longitud, latitud,nombre) VALUES('2.1789298172','6.1234567890','Insertado desde datos.sql');
+INSERT INTO objeto_estado(actual,fecha_alcanzado) VALUES('true','2022-04-11');
+INSERT INTO objeto_estado(actual,fecha_alcanzado) VALUES('false','2022-04-11');
+INSERT INTO objeto_estado(actual,fecha_alcanzado) VALUES('true','2022-04-11');
+INSERT INTO ruta(nombre,fecha_creacion) VALUES('Insertado desde datos.sql','2022-04-11');
+INSERT INTO ruta(nombre,fecha_creacion) VALUES('Insertado desde datos.sql','2022-04-11');
+INSERT INTO ruta(nombre,fecha_creacion) VALUES('Insertado desde datos.sql','2022-04-11');
+INSERT INTO tipo_objeto (activo, fecha_creacion) VALUES(true,'2022-04-11');
+INSERT INTO tipo_objeto (activo, fecha_creacion) VALUES(true,'2022-04-11');
+INSERT INTO tipo_objeto (activo, fecha_creacion) VALUES(true,'2022-04-11');
