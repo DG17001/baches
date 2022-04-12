@@ -49,7 +49,7 @@ public class ObjetoEstadoResourceIT {
                 .addClass(AbstractDataAccess.class)
                 .addClass(ObjetoEstadoBean.class)
                 .addClass(JAXRSConfiguration.class)
-                .addClass(TipoObjetoResource.class)
+                .addClass(ObjetoEstadoResource.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("META-INF/sql/datos.sql", "META-INF/sql/datos.sql")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "pom.xml");
@@ -133,7 +133,7 @@ public class ObjetoEstadoResourceIT {
 
         System.out.println("\n\n");
         System.out.println("\n\n");
-        System.out.println("ID:" + objeto.getInt("idObjeto") + " eliminado con exito");
+        System.out.println("ID:" + objeto.getInt("idObjetoEstado") + " eliminado con exito");
         System.out.println("\n\n");
         System.out.println("\n\n");
     }

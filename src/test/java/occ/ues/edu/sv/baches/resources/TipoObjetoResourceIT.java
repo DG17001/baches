@@ -22,7 +22,6 @@ import javax.ws.rs.core.Response;
 import occ.ues.edu.sv.baches.JAXRSConfiguration;
 import occ.ues.edu.sv.baches.control.AbstractDataAccess;
 import occ.ues.edu.sv.baches.control.TipoObjetoBean;
-import occ.ues.edu.sv.baches.entity.Estado;
 import occ.ues.edu.sv.baches.entity.TipoObjeto;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;

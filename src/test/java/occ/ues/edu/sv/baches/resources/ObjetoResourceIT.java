@@ -48,7 +48,7 @@ public class ObjetoResourceIT {
                 .addClass(AbstractDataAccess.class)
                 .addClass(ObjetoBean.class)
                 .addClass(JAXRSConfiguration.class)
-                .addClass(TipoObjetoResource.class)
+                .addClass(ObjetoResource.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("META-INF/sql/datos.sql", "META-INF/sql/datos.sql")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "pom.xml");
