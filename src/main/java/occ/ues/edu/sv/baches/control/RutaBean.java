@@ -7,6 +7,8 @@ package occ.ues.edu.sv.baches.control;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -16,9 +18,11 @@ import occ.ues.edu.sv.baches.entity.Ruta;
  *
  * @author magdiel
  */
+@Stateless
+@LocalBean
 public class RutaBean extends AbstractDataAccess<Ruta> implements Serializable{
     
-    @PersistenceContext (name = "bachesUP")
+    @PersistenceContext (unitName = "bachesUP")
     EntityManager em;
     
     public RutaBean (){
