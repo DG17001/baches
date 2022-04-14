@@ -4,3 +4,12 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd"
        bean-discovery-mode="all">
 </beans>
+<hazelcast>
+    ...
+    <network>
+        <rest-api enabled="true">
+        ...
+        </rest-api>
+    </network>
+    ...
+</hazelcast>
