@@ -81,11 +81,9 @@ public class RutaResourceIT {
         String cuerpoString = respuesta.readEntity(String.class);
         JsonReader lector = Json.createReader(new StringReader(cuerpoString));
         JsonObject objeto = lector.readObject();
-        System.out.println("\n\n");
-        System.out.println("\n\n");
+        System.out.println("\n");
         System.out.println("Creado " + objeto);
-        System.out.println("\n\n");
-        System.out.println("\n\n");
+        System.out.println("\n");
     }
 
     @Test
@@ -106,11 +104,9 @@ public class RutaResourceIT {
         String cuerpoString = respuesta.readEntity(String.class);
         JsonReader lector = Json.createReader(new StringReader(cuerpoString));
         JsonObject objeto = lector.readObject();
-        System.out.println("\n\n");
-        System.out.println("\n\n");
+        System.out.println("\n");
         System.out.println("Modificado " + objeto);
-        System.out.println("\n\n");
-        System.out.println("\n\n");
+        System.out.println("\n");
 
     }
 
@@ -130,12 +126,9 @@ public class RutaResourceIT {
         String cuerpoString = respuesta.readEntity(String.class);
         JsonReader lector = Json.createReader(new StringReader(cuerpoString));
         JsonObject objeto = lector.readObject();
-
-        System.out.println("\n\n");
-        System.out.println("\n\n");
+        System.out.println("\n");
         System.out.println("ID:" + objeto.getInt("idRuta") + " eliminado con exito");
-        System.out.println("\n\n");
-        System.out.println("\n\n");
+        System.out.println("\n");
     }
     
     @Test
@@ -163,8 +156,7 @@ public class RutaResourceIT {
             JsonObject objeto = listaJson.getJsonObject(i);
             System.out.println("ID: " + objeto.getInt("idRuta"));
         }
-        System.out.println("\n\n");
-        System.out.println("\n\n");
+        System.out.println("\n");
     }
     
     @Test
