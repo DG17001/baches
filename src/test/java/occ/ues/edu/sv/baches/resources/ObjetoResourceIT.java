@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 import javax.inject.Inject;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.ws.rs.client.Client;
@@ -51,7 +52,7 @@ public class ObjetoResourceIT {
                 .addClass(ObjetoResource.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("META-INF/sql/datos.sql", "META-INF/sql/datos.sql")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "pom.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(salida.toString(true));
         return salida;
     }
@@ -66,7 +67,7 @@ public class ObjetoResourceIT {
     @RunAsClient
     @Order(1)
     public void testCrear() {
-        System.out.println("Crear TipoObjeto");
+        System.out.println("Crear Objeto");
         Objeto nuevo = new Objeto();
         nuevo.setLatitud(new BigDecimal(6.1234567890));
         nuevo.setLongitud(new BigDecimal(5.8799797997));
@@ -152,18 +153,18 @@ public class ObjetoResourceIT {
         String totalTexto = respuesta.getHeaderString("Total-Registros");
         Assertions.assertNotEquals(Integer.valueOf(0), Integer.valueOf(totalTexto));
         System.out.println("Total: "+totalTexto);
-//        String cuerpoString = respuesta.readEntity(String.class);
-//        JsonReader lector = Json.createReader(new StringReader(cuerpoString));
-//        JsonArray listaJson = lector.readArray();
-//        int totalRegistros = listaJson.size();
-//        assertTrue(totalRegistros>0);
-//        System.out.println("\n\n");
-//        for(int i=0; i< listaJson.size(); i++){
-//            JsonObject objeto = listaJson.getJsonObject(i);
-//            System.out.println("ID: " + objeto.getInt("idTipoObjeto"));
-//        }
-//        System.out.println("\n\n");
-//        System.out.println("\n\n");
+        String cuerpoString = respuesta.readEntity(String.class);
+        JsonReader lector = Json.createReader(new StringReader(cuerpoString));
+        JsonArray listaJson = lector.readArray();
+        int totalRegistros = listaJson.size();
+        assertTrue(totalRegistros>0);
+        System.out.println("\n\n");
+        for(int i=0; i< listaJson.size(); i++){
+            JsonObject objeto = listaJson.getJsonObject(i);
+            System.out.println("ID: " + objeto.getInt("idObjeto"));
+        }
+        System.out.println("\n\n");
+        System.out.println("\n\n");
     }
     
     @Test

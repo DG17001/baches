@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import javax.inject.Inject;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.ws.rs.client.Client;
@@ -52,7 +53,7 @@ public class ObjetoEstadoResourceIT {
                 .addClass(ObjetoEstadoResource.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("META-INF/sql/datos.sql", "META-INF/sql/datos.sql")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "pom.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(salida.toString(true));
         return salida;
     }
@@ -153,18 +154,18 @@ public class ObjetoEstadoResourceIT {
         String totalTexto = respuesta.getHeaderString("Total-Registros");
         Assertions.assertNotEquals(Integer.valueOf(0), Integer.valueOf(totalTexto));
         System.out.println("Total: "+totalTexto);
-//        String cuerpoString = respuesta.readEntity(String.class);
-//        JsonReader lector = Json.createReader(new StringReader(cuerpoString));
-//        JsonArray listaJson = lector.readArray();
-//        int totalRegistros = listaJson.size();
-//        assertTrue(totalRegistros>0);
-//        System.out.println("\n\n");
-//        for(int i=0; i< listaJson.size(); i++){
-//            JsonObject objeto = listaJson.getJsonObject(i);
-//            System.out.println("ID: " + objeto.getInt("idTipoObjeto"));
-//        }
-//        System.out.println("\n\n");
-//        System.out.println("\n\n");
+        String cuerpoString = respuesta.readEntity(String.class);
+        JsonReader lector = Json.createReader(new StringReader(cuerpoString));
+        JsonArray listaJson = lector.readArray();
+        int totalRegistros = listaJson.size();
+        assertTrue(totalRegistros>0);
+        System.out.println("\n\n");
+        for(int i=0; i< listaJson.size(); i++){
+            JsonObject objeto = listaJson.getJsonObject(i);
+            System.out.println("ID: " + objeto.getInt("idObjetoEstado"));
+        }
+        System.out.println("\n\n");
+        System.out.println("\n\n");
     }
     
     @Test

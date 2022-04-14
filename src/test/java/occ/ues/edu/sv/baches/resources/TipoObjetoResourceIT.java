@@ -58,7 +58,7 @@ public class TipoObjetoResourceIT {
                 .addClass(TipoObjetoResource.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("META-INF/sql/datos.sql", "META-INF/sql/datos.sql")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "pom.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(salida.toString(true));
         return salida;
     }
@@ -76,7 +76,7 @@ public class TipoObjetoResourceIT {
         System.out.println("Crear TipoObjeto");
         TipoObjeto nuevo = new TipoObjeto();
         nuevo.setActivo(Boolean.TRUE);
-        nuevo.setFechaCreacion(new Date());
+            nuevo.setFechaCreacion(new Date());
         int resultadoEsperado = 200;
         Client cliente = ClientBuilder.newClient();
         WebTarget target = cliente.target(url.toString() + "resources/");
@@ -161,18 +161,18 @@ public class TipoObjetoResourceIT {
         String totalTexto = respuesta.getHeaderString("Total-Registros");
         Assertions.assertNotEquals(Integer.valueOf(0), Integer.valueOf(totalTexto));
         System.out.println("Total: "+totalTexto);
-//        String cuerpoString = respuesta.readEntity(String.class);
-//        JsonReader lector = Json.createReader(new StringReader(cuerpoString));
-//        JsonArray listaJson = lector.readArray();
-//        int totalRegistros = listaJson.size();
-//        assertTrue(totalRegistros>0);
-//        System.out.println("\n\n");
-//        for(int i=0; i< listaJson.size(); i++){
-//            JsonObject objeto = listaJson.getJsonObject(i);
-//            System.out.println("ID: " + objeto.getInt("idTipoObjeto"));
-//        }
-//        System.out.println("\n\n");
-//        System.out.println("\n\n");
+        String cuerpoString = respuesta.readEntity(String.class);
+        JsonReader lector = Json.createReader(new StringReader(cuerpoString));
+        JsonArray listaJson = lector.readArray();
+        int totalRegistros = listaJson.size();
+        assertTrue(totalRegistros>0);
+        System.out.println("\n\n");
+        for(int i=0; i< listaJson.size(); i++){
+            JsonObject objeto = listaJson.getJsonObject(i);
+            System.out.println("ID: " + objeto.getInt("idTipoObjeto"));
+        }
+        System.out.println("\n\n");
+        System.out.println("\n\n");
     }
     
     @Test

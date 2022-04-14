@@ -39,7 +39,7 @@ public class TipoObjetoResource{
         List<TipoObjeto> registros=toBean.findAll();
         Long total=toBean.contar();
         return Response.ok(registros)
-                .header("Total-registros", total)
+                .header("Totalilad de registros", total)
                 .build();
     }
     
@@ -51,8 +51,6 @@ public class TipoObjetoResource{
     
     @POST
     public Response crear(TipoObjeto nuevo) {
-        nuevo.setActivo(Boolean.TRUE);
-        nuevo.setFechaCreacion(new Date());
         toBean.crear(nuevo);
         return Response.ok(nuevo)
                 .header("Nuevo Registro Creado", nuevo)
@@ -60,10 +58,7 @@ public class TipoObjetoResource{
     }
 
     @PUT
-    public Response modificar(TipoObjeto edit) {
-        
-        edit.setActivo(Boolean.FALSE);
-        
+    public Response modificar(TipoObjeto edit) {       
         toBean.modificar(edit);
         return Response.ok(edit)
                 .header("Registro modificado", edit)

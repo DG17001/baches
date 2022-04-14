@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import javax.inject.Inject;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.ws.rs.client.Client;
@@ -51,7 +52,7 @@ public class RutaResourceIT {
                 .addClass(RutaResource.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("META-INF/sql/datos.sql", "META-INF/sql/datos.sql")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "pom.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(salida.toString(true));
         return salida;
     }
@@ -91,7 +92,7 @@ public class RutaResourceIT {
     @RunAsClient
     @Order(2)
     public void testModificar() {
-        System.out.println("Modificar Objeto");
+        System.out.println("Modificar Ruta");
         Ruta edit = new Ruta();
         edit.setNombre("Modificado desde RutaResource");
         edit.setFechaCreacion(new Date());
@@ -117,7 +118,7 @@ public class RutaResourceIT {
     @RunAsClient
     @Order(3)
     public void testEliminar() {
-        System.out.println("Eliminar ObjetoEstado");
+        System.out.println("Eliminar Ruta");
         Ruta delete = new Ruta();        
         int resultadoEsperado = 200;
         Client cliente = ClientBuilder.newClient();
@@ -152,18 +153,18 @@ public class RutaResourceIT {
         String totalTexto = respuesta.getHeaderString("Total-Registros");
         Assertions.assertNotEquals(Integer.valueOf(0), Integer.valueOf(totalTexto));
         System.out.println("Total: "+totalTexto);
-//        String cuerpoString = respuesta.readEntity(String.class);
-//        JsonReader lector = Json.createReader(new StringReader(cuerpoString));
-//        JsonArray listaJson = lector.readArray();
-//        int totalRegistros = listaJson.size();
-//        assertTrue(totalRegistros>0);
-//        System.out.println("\n\n");
-//        for(int i=0; i< listaJson.size(); i++){
-//            JsonObject objeto = listaJson.getJsonObject(i);
-//            System.out.println("ID: " + objeto.getInt("idTipoObjeto"));
-//        }
-//        System.out.println("\n\n");
-//        System.out.println("\n\n");
+        String cuerpoString = respuesta.readEntity(String.class);
+        JsonReader lector = Json.createReader(new StringReader(cuerpoString));
+        JsonArray listaJson = lector.readArray();
+        int totalRegistros = listaJson.size();
+        assertTrue(totalRegistros>0);
+        System.out.println("\n\n");
+        for(int i=0; i< listaJson.size(); i++){
+            JsonObject objeto = listaJson.getJsonObject(i);
+            System.out.println("ID: " + objeto.getInt("idRuta"));
+        }
+        System.out.println("\n\n");
+        System.out.println("\n\n");
     }
     
     @Test

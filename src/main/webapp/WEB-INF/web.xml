@@ -18,4 +18,21 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <ejb-link>#EstadoBean</ejb-link>
     </ejb-local-ref>
+    <servlet>
+        <servlet-name>ArquillianServletRunner</servlet-name>
+        <servlet-class>org.jboss.arquillian.protocol.servlet.runner.ServletTestRunner</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArquillianServletRunner</servlet-name>
+        <url-pattern>/ArquillianServletRunner</url-pattern>
+    </servlet-mapping>
+    <hazelcast>
+    ...
+    <network>
+        <rest-api enabled="true">
+        ...
+        </rest-api>
+    </network>
+    ...
+</hazelcast>
 </web-app>
