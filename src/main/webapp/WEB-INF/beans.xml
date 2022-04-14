@@ -5,11 +5,8 @@
        bean-discovery-mode="all">
 </beans>
 <hazelcast>
-    ...
     <network>
         <rest-api enabled="true">
-        ...
         </rest-api>
     </network>
-    ...
 </hazelcast>
