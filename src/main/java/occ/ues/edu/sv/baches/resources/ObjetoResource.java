@@ -51,6 +51,12 @@ public class ObjetoResource {
         return CompletableFuture.supplyAsync(toBean::contar);
     }
     
+    @GET
+    public Response findName(String nombre){
+        List<Objeto> lista=toBean.findName(nombre);
+        return Response.ok(lista).header("Lista-nombres", lista).build();
+    }
+    
     @POST
     public Response crear(Objeto nuevo) {
         nuevo.setNombre("Insertado desde ObjetoResource");
