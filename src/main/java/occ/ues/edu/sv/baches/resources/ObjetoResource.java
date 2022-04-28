@@ -50,7 +50,7 @@ public class ObjetoResource {
     public CompletableFuture<Long> contar(){
         return CompletableFuture.supplyAsync(toBean::contar);
     }
-    
+    //Metodo findName
     @GET
     public Response findName(String nombre){
         List<Objeto> lista=toBean.findName(nombre);
