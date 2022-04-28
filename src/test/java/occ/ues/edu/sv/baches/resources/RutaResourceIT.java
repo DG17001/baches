@@ -39,7 +39,7 @@ public class RutaResourceIT {
    @Deployment
     public static WebArchive crearDespliegue() {
         WebArchive salida = ShrinkWrap.create(WebArchive.class)
-                .addPackage("occ.ues.edu.sv.baches.entity")
+                .addPackage("occ.ues.edu.sv.baches.resources")
                 .addAsResource("persistence-arquillian.xml")
                 .addClass(AbstractDataAccess.class)
                 .addClass(RutaBean.class)

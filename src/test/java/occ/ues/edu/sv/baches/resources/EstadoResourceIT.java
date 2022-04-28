@@ -44,7 +44,7 @@ public class EstadoResourceIT {
 @Deployment
     public static WebArchive crearDespliegue() {
         WebArchive salida = ShrinkWrap.create(WebArchive.class)
-                .addPackage("occ.ues.edu.sv.baches.entity")
+                .addPackage("occ.ues.edu.sv.baches.resources")
                 .addAsResource("persistence-arquillian.xml")
                 .addClass(AbstractDataAccess.class)
                 .addClass(EstadoBean.class)
@@ -74,7 +74,7 @@ public class EstadoResourceIT {
         int resultadoEsperado = 200;
         Client cliente = ClientBuilder.newClient();
         WebTarget target = cliente.target(url.toString() + "resources/");
-        Response respuesta = target.path("estado").request("accept","application/json").post(Entity.entity(nuevo, MediaType.APPLICATION_JSON));
+        Response respuesta = target.path("estado").request("application/json").post(Entity.entity(nuevo, MediaType.APPLICATION_JSON));
         assertEquals(resultadoEsperado, respuesta.getStatus());
         String registro = respuesta.getHeaderString("Registro-Creado");
         assertNotEquals(null, registro);

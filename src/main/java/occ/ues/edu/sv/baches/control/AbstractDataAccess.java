@@ -6,6 +6,7 @@
 package occ.ues.edu.sv.baches.control;
 
 import java.io.Serializable;
+import java.nio.channels.IllegalSelectorException;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -120,7 +121,7 @@ public abstract class AbstractDataAccess<T> implements Serializable {
             throw new IllegalStateException("No se puede obtener un ambito de persistencia");
         }
     }
-
+    
     public List<T> findRange(int first, int pageSize) throws IllegalArgumentException,IllegalStateException {
         if (first != 0 && pageSize != 0) {
             EntityManager em = null;

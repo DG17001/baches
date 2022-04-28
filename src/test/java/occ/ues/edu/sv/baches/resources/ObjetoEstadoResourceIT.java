@@ -2,6 +2,7 @@ package occ.ues.edu.sv.baches.resources;
 
 import java.io.StringReader;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.concurrent.CompletableFuture;
@@ -40,7 +41,7 @@ public class ObjetoEstadoResourceIT {
     @Deployment
     public static WebArchive crearDespliegue() {
         WebArchive salida = ShrinkWrap.create(WebArchive.class)
-                .addPackage("occ.ues.edu.sv.baches.entity")
+                .addPackage("occ.ues.edu.sv.baches.resources")
                 .addAsResource("persistence-arquillian.xml")
                 .addClass(AbstractDataAccess.class)
                 .addClass(ObjetoEstadoBean.class)
@@ -58,7 +59,7 @@ public class ObjetoEstadoResourceIT {
     
     @ArquillianResource
     URL url;
-           
+
     @Test
     @RunAsClient
     @Order(1)
